@@ -1,0 +1,29 @@
+name: Tests
+
+# Prüft Syntax und Rechenkern bei jedem Push und Pull Request.
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Syntax prüfen
+        run: npm run check
+
+      - name: Rechenkern testen
+        run: npm test

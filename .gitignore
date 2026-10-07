@@ -1,0 +1,8 @@
+# Abhängigkeiten und Systemdateien
+node_modules/
+.DS_Store
+Thumbs.db
+*.log
+
+# Sicherungen aus der App enthalten persönliche Finanzdaten – nie einchecken
+finanzkompass-*.json

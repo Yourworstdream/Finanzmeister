@@ -1,0 +1,14 @@
+{
+  "name": "finanzmeister",
+  "version": "1.0.0",
+  "description": "Finanzkompass: Finanzen darstellen, Ausgaben ökonomisch bewerten, Geld realistisch aufteilen und Sparpläne erstellen.",
+  "private": true,
+  "engines": {
+    "node": ">=20"
+  },
+  "scripts": {
+    "test": "node --test tests/logik.test.js",
+    "check": "node --check assets/logik.js && node --check assets/beispiele.js && node --check assets/diagramme.js && node --check assets/app.js",
+    "start": "python3 -m http.server 8000"
+  }
+}
