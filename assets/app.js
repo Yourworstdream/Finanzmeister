@@ -1,4 +1,4 @@
-/* Finanzkompass – Oberfläche: Zustand, Ansichten, Formulare.
+/* Finanzmeister – Oberfläche: Zustand, Ansichten, Formulare.
  * Gerechnet wird ausschließlich in logik.js; diese Datei zeigt nur an und nimmt Eingaben entgegen.
  * Alle Texte aus Eingaben laufen durch html`…` und werden dabei maskiert. */
 (function () {
@@ -7,8 +7,13 @@
   const L = window.Logik;
   const BSP = window.Beispiele;
   const D = window.Diagramme;
-  const SCHLUESSEL = 'finanzkompass.v1';
-  const SCHLUESSEL_UI = 'finanzkompass.oberflaeche';
+  const SCHLUESSEL = 'finanzmeister.v1';
+  const SCHLUESSEL_UI = 'finanzmeister.oberflaeche';
+  // Bis zur Umbenennung hieß die App „Finanzkompass“; deren Daten werden beim ersten Start übernommen.
+  const ALTE_SCHLUESSEL = [
+    ['finanzkompass.v1', SCHLUESSEL],
+    ['finanzkompass.oberflaeche', SCHLUESSEL_UI],
+  ];
 
   // ---------------------------------------------------------------- sicheres HTML
 
@@ -96,10 +101,39 @@
     buchung: { typ: 'ausgabe', kategorie: 'lebensmittel' },
   };
 
+  /**
+   * Übernimmt Daten der alten Schlüssel. Gibt es schon abweichende neue Daten (z. B. weil ein Tab mit der alten
+   * Version weitergeschrieben hat), wird der alte Stand unter „….alt“ gesichert statt verworfen. Scheitert das
+   * Schreiben (Speicher voll), bleibt der alte Schlüssel stehen und wird direkt gelesen (siehe lesen()).
+   */
+  function altdatenUebernehmen() {
+    ALTE_SCHLUESSEL.forEach(([alt, neu]) => {
+      try {
+        const wert = localStorage.getItem(alt);
+        if (wert === null) return;
+        const vorhanden = localStorage.getItem(neu);
+        if (vorhanden === null) localStorage.setItem(neu, wert);
+        else if (vorhanden !== wert) localStorage.setItem(neu + '.alt', wert);
+        localStorage.removeItem(alt);
+      } catch (e) {
+        /* Speicher gesperrt oder voll: alten Schlüssel stehen lassen */
+      }
+    });
+  }
+
+  /** Liest einen Schlüssel, ersatzweise seinen Vorgänger aus der Zeit vor der Umbenennung. */
+  function lesen(schluessel) {
+    const wert = localStorage.getItem(schluessel);
+    if (wert !== null) return wert;
+    const alt = ALTE_SCHLUESSEL.find(([, neu]) => neu === schluessel);
+    return alt ? localStorage.getItem(alt[0]) : null;
+  }
+
   function laden() {
+    altdatenUebernehmen();
     let roh = null;
     try {
-      roh = localStorage.getItem(SCHLUESSEL);
+      roh = lesen(SCHLUESSEL);
     } catch (e) {
       speicherbar = false;
     }
@@ -129,7 +163,7 @@
 
   function uiLaden() {
     try {
-      const r = JSON.parse(localStorage.getItem(SCHLUESSEL_UI) || 'null');
+      const r = JSON.parse(lesen(SCHLUESSEL_UI) || 'null');
       if (r && typeof r === 'object') {
         if ([5, 10, 20, 30].includes(r.horizont)) ui.horizont = r.horizont;
         if (r.rechner && typeof r.rechner === 'object') {
@@ -429,7 +463,7 @@
 
   function startseite() {
     return html`
-      ${kopf('Willkommen beim Finanzkompass', 'Trag deine Einnahmen und regelmäßigen Ausgaben ein. Die App bewertet sie, teilt dein Geld realistisch auf und erstellt Sparpläne.')}
+      ${kopf('Willkommen beim Finanzmeister', 'Trag deine Einnahmen und regelmäßigen Ausgaben ein. Die App bewertet sie, teilt dein Geld realistisch auf und erstellt Sparpläne.')}
       <div class="raster raster--zwei">
         ${karte('Mit eigenen Zahlen beginnen', html`<p>Am besten nimmst du deine Kontoauszüge der letzten drei Monate zur Hand. Erst Einnahmen, dann feste Kosten wie Miete und Verträge, dann variable Ausgaben wie Lebensmittel.</p>
           <div class="knopfreihe">${knopf('Erste Einnahme eintragen', 'neu-einnahme', { klasse: 'knopf--primaer' })}${knopf('Erste Ausgabe eintragen', 'neu-ausgabe')}</div>`)}
@@ -1740,7 +1774,7 @@
   // ---------------------------------------------------------------- Import und Export
 
   function dateiname() {
-    return 'finanzkompass-' + new Date().toISOString().slice(0, 10) + '.json';
+    return 'finanzmeister-' + new Date().toISOString().slice(0, 10) + '.json';
   }
 
   function importieren(text) {
@@ -1754,7 +1788,7 @@
       return;
     }
     if (!daten || typeof daten !== 'object' || (!Array.isArray(daten.einnahmen) && !Array.isArray(daten.ausgaben))) {
-      fehler.textContent = 'In diesen Daten fehlen Einnahmen und Ausgaben. Ist es eine Sicherung aus dem Finanzkompass?';
+      fehler.textContent = 'In diesen Daten fehlen Einnahmen und Ausgaben. Ist es eine Sicherung aus dem Finanzmeister?';
       fehler.hidden = false;
       return;
     }
@@ -1860,7 +1894,7 @@
         const f = datei.files[0];
         if (f.size > 5 * 1024 * 1024) {
           const fehler = $('#import-fehler');
-          fehler.textContent = 'Die Datei ist größer als 5 MB. Das ist keine Sicherung aus dem Finanzkompass.';
+          fehler.textContent = 'Die Datei ist größer als 5 MB. Das ist keine Sicherung aus dem Finanzmeister.';
           fehler.hidden = false;
           return;
         }
@@ -2016,6 +2050,10 @@
 
   // In einem anderen Tab geändert? Dann neu laden, damit nichts überschrieben wird.
   window.addEventListener('storage', (ev) => {
+    if (ALTE_SCHLUESSEL.some(([alt]) => alt === ev.key) && ev.newValue !== null) {
+      toast('In einem anderen Tab läuft noch die alte Version „Finanzkompass“. Schließe ihn, sonst landen Änderungen dort nicht im Finanzmeister.');
+      return;
+    }
     if (ev.key === SCHLUESSEL && ev.newValue) {
       try {
         haushalt = L.normalisiere(JSON.parse(ev.newValue));

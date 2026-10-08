@@ -1,4 +1,4 @@
-/* Finanzkompass – Rechenkern ohne Oberfläche.
+/* Finanzmeister – Rechenkern ohne Oberfläche.
  * Läuft im Browser (window.Logik) und in Node (require), damit alles mit `node --test` prüfbar ist.
  * Alle Beträge in Euro, alle Zinssätze in Prozent pro Jahr, gerechnet wird pro Monat. */
 (function (wurzel, fabrik) {

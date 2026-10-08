@@ -1,4 +1,4 @@
-/* Finanzkompass – SVG-Diagramme ohne Fremdbibliothek.
+/* Finanzmeister – SVG-Diagramme ohne Fremdbibliothek.
  * Jedes Diagramm wird in der tatsächlichen Breite seines Containers gezeichnet (keine skalierte Schrift)
  * und hat eine Tooltip-Ebene für Maus und Tastatur. Texte werden nur über textContent gesetzt. */
 window.Diagramme = (function () {

@@ -5,4 +5,5 @@ Thumbs.db
 *.log
 
 # Sicherungen aus der App enthalten persönliche Finanzdaten – nie einchecken
+finanzmeister-*.json
 finanzkompass-*.json

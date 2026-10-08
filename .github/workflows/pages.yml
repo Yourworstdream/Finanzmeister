@@ -1,0 +1,87 @@
+name: Webseite
+
+# Veröffentlicht die App auf GitHub Pages, sobald sich main ändert.
+# Einmalig nötig: Settings → Pages → Build and deployment → Source: „GitHub Actions“.
+# Solange das nicht eingestellt ist, endet der Lauf grün mit einem Hinweis statt rot.
+on:
+  push:
+    branches: [ main ]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
+jobs:
+  bauen:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    outputs:
+      aktiv: ${{ steps.pages.outputs.aktiv }}
+    steps:
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+
+      - name: Erst testen, dann veröffentlichen
+        run: npm run check && npm test
+
+      - name: Ist GitHub Pages auf „GitHub Actions“ eingestellt?
+        id: pages
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          # Nur „Pages ist aus“ (HTTP 404) gilt als gewollter Zustand; jeder andere Fehler macht den Lauf rot.
+          if quelle="$(gh api "repos/${GITHUB_REPOSITORY}/pages" --jq .build_type 2>fehler.txt)"; then
+            :
+          elif grep -q "HTTP 404" fehler.txt; then
+            quelle=""
+          else
+            cat fehler.txt >&2
+            exit 1
+          fi
+          if [ "$quelle" = "workflow" ]; then
+            echo "aktiv=true" >> "$GITHUB_OUTPUT"
+          elif [ "$quelle" = "legacy" ]; then
+            echo "aktiv=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Webseite nicht veröffentlicht::Pages steht auf „Deploy from a branch“. Für diesen Workflow unter Settings → Pages → Source „GitHub Actions“ wählen."
+          else
+            echo "aktiv=false" >> "$GITHUB_OUTPUT"
+            echo "::notice title=Webseite noch nicht veröffentlicht::Settings → Pages → Source: „GitHub Actions“ wählen und diesen Workflow erneut starten (Actions → Webseite → Run workflow)."
+          fi
+
+      - name: Seite zusammenstellen (nur die App, ohne Tests und Bilder)
+        if: steps.pages.outputs.aktiv == 'true'
+        run: |
+          mkdir -p _site
+          cp -r index.html assets _site/
+
+      - uses: actions/configure-pages@v6
+        if: steps.pages.outputs.aktiv == 'true'
+
+      - uses: actions/upload-pages-artifact@v5
+        if: steps.pages.outputs.aktiv == 'true'
+        with:
+          path: _site
+
+  veroeffentlichen:
+    needs: bauen
+    if: needs.bauen.outputs.aktiv == 'true'
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Auf GitHub Pages veröffentlichen
+        id: deployment
+        uses: actions/deploy-pages@v5

@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <title>Finanzkompass</title>
+  <title>Finanzmeister</title>
   <meta name="description" content="Finanzen darstellen, Ausgaben ökonomisch bewerten, Geld realistisch aufteilen und Sparpläne erstellen. Alle Daten bleiben im Browser.">
   <meta name="color-scheme" content="light dark">
   <link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
@@ -14,14 +14,14 @@
 
   <header class="kopfleiste">
     <div class="kopfleiste-innen">
-      <a class="marke" href="#uebersicht" aria-label="Finanzkompass, zur Übersicht">
+      <a class="marke" href="#uebersicht" aria-label="Finanzmeister, zur Übersicht">
         <svg class="marke-symbol" viewBox="0 0 32 32" aria-hidden="true">
           <circle cx="16" cy="16" r="14" class="marke-ring"></circle>
           <path d="M16 5 L19.2 16 L16 27 L12.8 16 Z" class="marke-nadel-hinten"></path>
           <path d="M16 5 L19.2 16 L12.8 16 Z" class="marke-nadel"></path>
           <circle cx="16" cy="16" r="1.8" class="marke-achse"></circle>
         </svg>
-        <span class="marke-name">Finanzkompass</span>
+        <span class="marke-name">Finanzmeister</span>
       </a>
       <span id="speicherstatus" class="speicherstatus"></span>
       <button type="button" class="knopf knopf--kopf" data-aktion="daten-dialog">Daten &amp; Beispiele</button>
@@ -38,7 +38,7 @@
   </header>
 
   <main id="inhalt" class="inhalt" tabindex="-1">
-    <noscript><p class="leer">Der Finanzkompass braucht JavaScript. Es werden keine Daten an einen Server gesendet.</p></noscript>
+    <noscript><p class="leer">Der Finanzmeister braucht JavaScript. Es werden keine Daten an einen Server gesendet.</p></noscript>
     <div id="beispiel-hinweis"></div>
     <section id="ansicht-uebersicht" data-ansicht="uebersicht"></section>
     <section id="ansicht-haushalt" data-ansicht="haushalt" hidden></section>
@@ -222,7 +222,7 @@
           <details id="w-annahmen" class="wissen">
             <summary>Annahmen und Grenzen der Rechnung</summary>
             <ul>
-              <li>Der Finanzkompass ist ein Lern- und Planungswerkzeug, keine Anlage-, Steuer- oder Schuldnerberatung.</li>
+              <li>Der Finanzmeister ist ein Lern- und Planungswerkzeug, keine Anlage-, Steuer- oder Schuldnerberatung.</li>
               <li>Renditen sind Annahmen. Aktienkurse schwanken, eine bestimmte Rendite ist nie garantiert.</li>
               <li>Steuern sind nicht eingerechnet. Kapitalerträge über dem Sparerpauschbetrag von 1.000 € im Jahr (2.000 € bei Ehepaaren) kosten 25 % Abgeltungsteuer plus Solidaritätszuschlag und gegebenenfalls Kirchensteuer.</li>
               <li>Der Fahrplan geht davon aus, dass Einkommen und Ausgaben gleich bleiben.</li>
@@ -235,7 +235,7 @@
   </main>
 
   <footer class="fuss">
-    <p>Finanzkompass · Deine Daten bleiben in diesem Browser. Keine Anlageberatung: Die Rechnungen beruhen auf Annahmen, die du unter „Aufteilung“ anpassen kannst. Vergleichswerte: Statistisches Bundesamt, Laufende Wirtschaftsrechnungen 2024.</p>
+    <p>Finanzmeister · Deine Daten bleiben in diesem Browser. Keine Anlageberatung: Die Rechnungen beruhen auf Annahmen, die du unter „Aufteilung“ anpassen kannst. Vergleichswerte: Statistisches Bundesamt, Laufende Wirtschaftsrechnungen 2024.</p>
   </footer>
 
   <dialog id="dialog" class="dialog" aria-labelledby="dialog-titel"></dialog>

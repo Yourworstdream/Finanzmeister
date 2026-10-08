@@ -1,4 +1,4 @@
-/* Finanzkompass – Beispielhaushalte zum Ausprobieren. Alle Zahlen sind ausgedacht, aber realistisch.
+/* Finanzmeister – Beispielhaushalte zum Ausprobieren. Alle Zahlen sind ausgedacht, aber realistisch.
  * Termine werden relativ zum heutigen Monat gesetzt, damit die Beispiele nie veralten. */
 (function (wurzel, fabrik) {
   'use strict';

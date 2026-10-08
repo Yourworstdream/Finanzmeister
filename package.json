@@ -1,7 +1,7 @@
 {
   "name": "finanzmeister",
   "version": "1.0.0",
-  "description": "Finanzkompass: Finanzen darstellen, Ausgaben ökonomisch bewerten, Geld realistisch aufteilen und Sparpläne erstellen.",
+  "description": "Finanzmeister: Finanzen darstellen, Ausgaben ökonomisch bewerten, Geld realistisch aufteilen und Sparpläne erstellen.",
   "private": true,
   "engines": {
     "node": ">=20"

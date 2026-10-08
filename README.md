@@ -1,6 +1,6 @@
-# Finanzmeister · Finanzkompass
+# Finanzmeister
 
-Der **Finanzkompass** ist eine Web-App für die eigenen Finanzen: Sie **stellt Einnahmen und Ausgaben übersichtlich dar**,
+Der **Finanzmeister** ist eine Web-App für die eigenen Finanzen: Sie **stellt Einnahmen und Ausgaben übersichtlich dar**,
 **bewertet jede Ausgabe mit Methoden aus Volks- und Betriebswirtschaft**, **teilt das Geld realistisch
 auf** und **erstellt Sparpläne** mit Fahrplan bis zum Ziel. Alles läuft im Browser, ohne Server,
 ohne Anmeldung und ohne Abhängigkeiten.
@@ -9,6 +9,7 @@ ohne Anmeldung und ohne Abhängigkeiten.
 
 ## Starten
 
+* **Online:** https://yourworstdream.github.io/Finanzmeister/ (sobald GitHub Pages eingeschaltet ist, siehe unten).
 * **Doppelklick auf `index.html`** – fertig. Es wird nichts installiert und nichts aus dem Internet geladen.
 * Oder als kleiner Webserver: `npm start` (bzw. `python3 -m http.server 8000`) im Repository-Ordner, dann `http://localhost:8000` öffnen.
 
@@ -78,7 +79,7 @@ assets/style.css         Gestaltung, helles und dunkles Farbschema
 assets/favicon.svg       Symbol (Kompass)
 tests/logik.test.js      Tests für den Rechenkern
 bilder/                  Bildschirmfotos für diese README
-.github/workflows/       Testlauf in GitHub Actions
+.github/workflows/       Tests (test.yml) und Veröffentlichung auf GitHub Pages (pages.yml)
 ```
 
 `logik.js` und `beispiele.js` laufen im Browser und in Node. Die Oberfläche rechnet nichts selbst.
@@ -93,16 +94,23 @@ npm run check     # Syntax aller Skripte prüfen
 Es gibt keine Abhängigkeiten, `npm install` ist nicht nötig; Node.js ab Version 20 reicht. Die Tests laufen
 bei jedem Push und Pull Request automatisch in GitHub Actions (`.github/workflows/test.yml`).
 
+## Veröffentlichen auf GitHub Pages
+
+Der Workflow `.github/workflows/pages.yml` testet die App und veröffentlicht danach `index.html` und `assets/`
+bei jedem Push auf `main`. Einmalig muss Pages eingeschaltet werden: **Settings → Pages → Build and deployment →
+Source: „GitHub Actions“**, danach unter **Actions → Webseite → Run workflow** einmal starten. Bis dahin endet
+der Workflow grün mit einem Hinweis.
+
 ## Datenschutz und Sicherheit
 
 * Alle Daten bleiben im `localStorage` des Browsers. Es gibt keine Netzwerkzugriffe, keine Schriften
   oder Skripte von fremden Servern.
 * Sichern und Wiederherstellen über **Daten & Beispiele** (JSON-Datei oder Zwischenablage). Sicherungsdateien
-  (`finanzkompass-*.json`) enthalten persönliche Daten und stehen deshalb in `.gitignore`.
+  (`finanzmeister-*.json`) enthalten persönliche Daten und stehen deshalb in `.gitignore`.
 * Importierte Daten werden vollständig geprüft und bereinigt; alle Texte werden beim Anzeigen maskiert.
 
 ## Grenzen
 
-Der Finanzkompass ist ein Lern- und Planungswerkzeug, keine Anlage-, Steuer- oder Schuldnerberatung.
+Der Finanzmeister ist ein Lern- und Planungswerkzeug, keine Anlage-, Steuer- oder Schuldnerberatung.
 Renditen sind Annahmen, Steuern (Abgeltungsteuer über dem Sparerpauschbetrag) sind nicht eingerechnet,
 und der Fahrplan geht von gleichbleibendem Einkommen und gleichbleibenden Ausgaben aus.
