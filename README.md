@@ -7,14 +7,100 @@ ohne Anmeldung und ohne Abhängigkeiten.
 
 ![Übersicht mit Finanznote, Kennzahlen und Geldfluss](bilder/1-uebersicht.png)
 
-## Starten
+## So bekommst du die App – Schritt für Schritt
 
-* **Online:** https://yourworstdream.github.io/Finanzmeister/ (sobald GitHub Pages eingeschaltet ist, siehe unten).
-* **Doppelklick auf `index.html`** – fertig. Es wird nichts installiert und nichts aus dem Internet geladen.
-* Oder als kleiner Webserver: `npm start` (bzw. `python3 -m http.server 8000`) im Repository-Ordner, dann `http://localhost:8000` öffnen.
+Du brauchst nur einen Computer, ein Tablet oder ein Handy mit einem **Browser**.
+Ein Browser ist das Programm, mit dem du Internetseiten anschaust, zum Beispiel
+**Chrome**, **Edge**, **Firefox** oder **Safari**.
+Die App kostet nichts. Du musst dich nirgends anmelden.
 
-Beim ersten Start ist ein Beispielhaushalt geladen (Azubi im 2. Lehrjahr). Über **Daten & Beispiele**
-gibt es zwei weitere (Berufseinsteiger, Familie), mit **Mit eigenen Zahlen starten** beginnt man leer.
+Es gibt zwei Wege. Such dir einen aus.
+
+### Weg 1: Im Internet öffnen (am einfachsten)
+
+1. Öffne deinen Browser.
+2. Klicke oben in das lange Feld, in dem sonst die Internetadresse steht.
+3. Schreibe genau das hinein: `yourworstdream.github.io/Finanzmeister`
+4. Drücke die Taste **Enter**. Auf dem Handy tippst du auf **Los** oder **Öffnen**.
+5. Fertig! Jetzt siehst du den Finanzmeister.
+
+Oder klicke einfach hier: **[Finanzmeister öffnen](https://yourworstdream.github.io/Finanzmeister/)**
+
+**Tipp fürs Handy oder Tablet:** Du kannst die App wie ein richtiges App-Symbol auf deinen Startbildschirm legen.
+
+- **iPhone oder iPad (Safari):** Tippe auf das Teilen-Zeichen (ein Viereck mit einem Pfeil nach oben).
+  Tippe dann auf **„Zum Home-Bildschirm“** und danach auf **„Hinzufügen“**.
+- **Android (Chrome):** Tippe oben rechts auf die drei Punkte.
+  Tippe dann auf **„Zum Startbildschirm hinzufügen“** und danach auf **„Hinzufügen“**.
+
+**Es kommt nur eine Fehlerseite mit „404“?** Dann ist die Webseite noch nicht eingeschaltet.
+Nimm dann Weg 2. Oder bitte die Person, der das Projekt gehört, den Teil
+[„Webseite einschalten“](#webseite-einschalten-nur-einmal-nur-für-den-besitzer) unten zu machen.
+
+### Weg 2: Auf den Computer holen (geht danach auch ohne Internet)
+
+1. Öffne diese Seite: <https://github.com/Yourworstdream/Finanzmeister>
+2. Suche den grünen Knopf **„Code“**. Er ist oben rechts über der Liste mit den Dateien. Klicke darauf.
+3. Ein kleines Fenster geht auf. Klicke darin ganz unten auf **„Download ZIP“**.
+4. Dein Computer lädt jetzt eine Datei herunter. Sie heißt **Finanzmeister-main.zip**.
+   Du findest sie im Ordner **Downloads**.
+5. Eine ZIP-Datei ist wie ein zugeklebtes Paket. Du musst sie erst auspacken:
+   - **Windows:** Klicke mit der **rechten** Maustaste auf die Datei.
+     Klicke dann auf **„Alle extrahieren …“** und danach auf **„Extrahieren“**.
+   - **Mac:** Klicke zweimal schnell (Doppelklick) auf die Datei. Dann geht das Paket von allein auf.
+     Manchmal hat der Mac das schon von selbst gemacht. Dann ist der Ordner schon da.
+6. Jetzt gibt es einen neuen Ordner. Er heißt **Finanzmeister-main**. Öffne ihn mit einem Doppelklick.
+7. Darin liegt die Datei **index.html**. Manchmal steht dort nur **index**, mit einem kleinen Browser-Bild davor.
+   Mache einen Doppelklick darauf.
+8. Fertig! Der Finanzmeister geht in deinem Browser auf.
+
+**Wichtig:** Lass alle Dateien zusammen in dem Ordner.
+Die Datei **index.html** braucht den Ordner **assets** direkt daneben. Sonst funktioniert die App nicht.
+
+### Das erste Mal in der App
+
+1. Zuerst siehst du Beispielzahlen von einem Azubi. Das sind nicht deine Zahlen. Sie sind nur zum Ausprobieren.
+2. Klicke auf **„Mit eigenen Zahlen starten“**.
+3. Klicke auf **„+ Einnahme“**. Trage ein, wie viel Geld du bekommst, zum Beispiel dein Taschengeld.
+   Klicke dann auf **„Speichern“**.
+4. Klicke auf **„+ Ausgabe“**. Trage ein, wofür du Geld ausgibst, zum Beispiel für Süßigkeiten.
+   Klicke wieder auf **„Speichern“**. Das machst du für jede Ausgabe.
+5. Schau dir oben die Bereiche an: **Übersicht**, **Bewertung**, **Aufteilung** und **Sparpläne**.
+   Unter **Wissen** wird alles noch einmal in Ruhe erklärt.
+
+### Gut zu wissen
+
+- Deine Zahlen bleiben auf deinem Gerät. Sie werden nicht ins Internet geschickt. Niemand sonst kann sie sehen.
+- Die App merkt sich deine Zahlen nur in **diesem** Browser auf **diesem** Gerät.
+  Auf einem anderen Gerät fängst du neu an.
+- Die Version aus dem Internet (Weg 1) und die heruntergeladene Version (Weg 2) merken sich ihre Zahlen getrennt.
+- Du willst deine Zahlen aufheben oder auf ein anderes Gerät mitnehmen?
+  Klicke oben rechts auf **„Daten & Beispiele“** und dann auf **„Als Datei speichern“**.
+  Auf dem anderen Gerät klickst du auf **„Daten & Beispiele“**, dann bei **„Sicherungsdatei wählen“** auf die Datei,
+  und danach auf **„Daten übernehmen“**.
+- Wenn du im Browser den Verlauf **und die Website-Daten** löschst, sind auch deine Zahlen weg.
+  Speichere sie vorher als Datei.
+
+### Webseite einschalten (nur einmal, nur für den Besitzer)
+
+Damit Weg 1 funktioniert, muss die Person, der das Projekt auf GitHub gehört, die Webseite einmal einschalten.
+Danach macht GitHub die Webseite bei jeder Änderung von allein neu.
+
+1. Öffne <https://github.com/Yourworstdream/Finanzmeister> und melde dich bei GitHub an.
+2. Klicke oben auf **„Settings“** (das Zahnrad).
+3. Klicke links in der Liste auf **„Pages“**.
+4. Suche **„Source“** und stelle es auf **„GitHub Actions“**.
+5. Klicke oben auf **„Actions“**. Wähle links **„Webseite“** aus.
+6. Klicke rechts auf **„Run workflow“** und dann auf den grünen Knopf **„Run workflow“**.
+7. Warte ein bis zwei Minuten. Wenn neben dem Lauf ein grüner Kreis mit Haken ist, ist die Webseite online.
+
+### Für Fortgeschrittene
+
+- Lokaler Webserver: `npm start` (bzw. `python3 -m http.server 8000`) im Projektordner, dann `http://localhost:8000` öffnen.
+- Beim ersten Start ist ein Beispielhaushalt geladen (Azubi im 2. Lehrjahr). Über **Daten & Beispiele**
+  gibt es zwei weitere (Berufseinsteiger, Familie).
+- Der Workflow `.github/workflows/pages.yml` testet die App vor jeder Veröffentlichung und lädt nur
+  `index.html` und `assets/` hoch. Solange Pages nicht eingeschaltet ist, endet er grün mit einem Hinweis.
 
 ## Was die App kann
 
@@ -93,13 +179,6 @@ npm run check     # Syntax aller Skripte prüfen
 
 Es gibt keine Abhängigkeiten, `npm install` ist nicht nötig; Node.js ab Version 20 reicht. Die Tests laufen
 bei jedem Push und Pull Request automatisch in GitHub Actions (`.github/workflows/test.yml`).
-
-## Veröffentlichen auf GitHub Pages
-
-Der Workflow `.github/workflows/pages.yml` testet die App und veröffentlicht danach `index.html` und `assets/`
-bei jedem Push auf `main`. Einmalig muss Pages eingeschaltet werden: **Settings → Pages → Build and deployment →
-Source: „GitHub Actions“**, danach unter **Actions → Webseite → Run workflow** einmal starten. Bis dahin endet
-der Workflow grün mit einem Hinweis.
 
 ## Datenschutz und Sicherheit
 
